@@ -92,7 +92,7 @@ function NavBar() {
         <div className="menu-item">
           <span className="icon">
             <svg
-              class="cart-svg"
+              className="cart-svg"
               viewBox="-1 0 37 32"
               height="20"
               width="20"

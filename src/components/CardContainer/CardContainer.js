@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CardContainer.scss";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import { SWIGGY_RESTAURANTS_API_URI } from "../../utils/constants";
+import ShimmerUI from "../ShimmerUI/ShimmerUI";
 
 function CardContainer() {
   const [restaurantsArray, setRestaurantsArray] = useState([]);
@@ -15,6 +16,9 @@ function CardContainer() {
 
     getData();
   }, []);
+
+  if(restaurantsArray.length===0)
+    return <ShimmerUI />
 
   return (
     <div className="card-container">

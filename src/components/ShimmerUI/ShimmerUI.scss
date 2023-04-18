@@ -1,0 +1,30 @@
+.shimmer-ui{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+
+    .box{
+
+        .image{
+            width: 254px;
+            height: 160px;
+            background: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .line1{
+            width: 130px;
+            height: 10px;
+            background-color: #ddd;
+            margin-bottom: 10px;
+        }
+
+        .line2{
+            width: 80px;
+            height: 10px;
+            background-color: #ddd;
+        }
+    }
+}

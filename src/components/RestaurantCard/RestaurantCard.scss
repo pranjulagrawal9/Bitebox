@@ -1,0 +1,62 @@
+.restaurant-card{
+    padding: 30px 20px;
+    width: fit-content;
+
+    .restaurant-img{
+        width: 254px;
+        margin-bottom: 15px;
+
+        img{
+            width: 100%;
+        }
+    }
+
+    .restaurant-name{
+        margin-bottom: 5px;
+        font-weight: 500;
+        max-width: 254px;
+        font-size: 17px;
+    }
+
+    .cuisines{
+        margin-bottom: 20px;
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: gray;
+        max-width: 254px;
+    }
+
+    .rating-time-price{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 20px;
+        font-weight: 400;
+        color: gray;
+
+        .rating-box{
+            background-color: #48C479;
+            color: white;
+            padding: 2px 5px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .orange{
+            background-color: #DB7C38;
+        }
+    }
+
+    .dot{
+        color: black;
+    }
+
+    &:hover{
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        cursor: pointer;
+    }
+}

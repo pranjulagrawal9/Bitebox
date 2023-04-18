@@ -1,0 +1,51 @@
+.navbar{
+    border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+
+    .left{
+        display: flex;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .right{
+        display: flex;
+        gap: 50px;
+
+        .menu-item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+
+            .icon{
+                position: relative;
+
+                svg{
+                    stroke: currentColor;
+                    fill: #3d4152;
+                    stroke-width: 0;
+                }
+
+                .cart-svg{
+                    fill: #fff;
+                    stroke-width: 2px;
+                    stroke: black;
+                }
+            }
+
+            .cart-count{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-60%);
+                font-size: 14px;
+            }
+        }
+    }
+
+}

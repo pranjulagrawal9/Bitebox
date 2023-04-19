@@ -1,7 +1,36 @@
+.search-box{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+    .container{
+        border: 1px solid grey;
+        width: 60vw;
+        display: flex;
+        align-items: center;
+        padding-right: 13px;
+        border-radius: 5px;
+
+        input{
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+        }
+    }
+}
+
+.not-found{
+    min-height: calc(100vh - 146px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .card-container{
     margin: 30px auto 0;
-    // background-color: grey;
-    // min-height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
     gap: 20px;

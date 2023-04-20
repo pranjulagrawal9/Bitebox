@@ -3,6 +3,7 @@ import "./CardContainer.scss";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import { SWIGGY_RESTAURANTS_API_URI } from "../../utils/constants";
 import ShimmerUI from "../ShimmerUI/ShimmerUI";
+import { Link } from "react-router-dom";
 
 function CardContainer() {
   const [restaurantsArray, setRestaurantsArray] = useState([]);
@@ -28,7 +29,6 @@ function CardContainer() {
     const filteredArray = restaurantsArray.filter((restaurant) =>
       restaurant.data.name.toLowerCase().includes(searchText.toLowerCase())
     );
-    console.log(filteredArray);
     setFilteredArray(filteredArray);
   }
 
@@ -52,14 +52,18 @@ function CardContainer() {
       </div>
 
       {filteredArray.length === 0 ? (
-        <div className="not-found" ><h2>No match found for "{searchText}"</h2></div>
+        <div className="not-found">
+          <h2>No match found for "{searchText}"</h2>
+        </div>
       ) : (
         <div className="card-container">
           {filteredArray?.map((restaurant) => (
-            <RestaurantCard
-              resData={{ ...restaurant.data }}
+            <Link
+              to={`/restaurants/${restaurant.data.name.toLowerCase().split(" ").join("-")}-${restaurant.data.locality.toLowerCase().split(" ").join("-")}-${restaurant.data.area.toLowerCase().split(" ").join("-")}-${restaurant.data.slugs.city.toLowerCase()}-${restaurant.data.id}`}
               key={restaurant.data.id}
-            />
+            >
+              <RestaurantCard resData={{ ...restaurant.data }} />
+            </Link>
           ))}
         </div>
       )}

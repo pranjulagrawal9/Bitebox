@@ -1,13 +1,13 @@
 import React from 'react'
 import './App.scss'
 import NavBar from './components/NavBar/NavBar'
-import CardContainer from './components/CardContainer/CardContainer'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   return (
     <div className='app'>
       <NavBar />
-      <CardContainer />
+      <Outlet />
     </div>
   )
 }

@@ -1,0 +1,135 @@
+.restaurant-info{
+    display: flex;
+    justify-content: center;
+
+    .container{
+        width: 800px;
+        min-height: calc(100vh - 74px);
+        padding-top: 20px;
+        // background-color: rgb(236, 236, 236);
+
+        .path{
+            margin-bottom: 30px;
+            color: grey;
+            font-weight: 400;
+        }
+
+        .top-section{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgb(165, 165, 165);
+            padding-bottom: 20px;
+
+            .left{
+
+                .restaurant-name{
+                    text-transform: capitalize;
+                    margin-bottom: 10px;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                }
+
+                .cuisines{
+                    margin-bottom: 5px;
+                }
+
+                .cuisines, .area-distance{
+                    color: grey;
+                    font-weight: 400;
+                }
+            }
+
+            .right{
+
+                .rating-box{
+                    border: 1px solid lightgray;
+                    border-radius: 5px;
+                    padding: 8px;
+                    max-width: 100px;
+
+                    .rating{
+                        padding-bottom: 10px;
+                        text-align: center;
+                        border-bottom: 1px solid #e9e9eb;
+                        color: #3d9b6d;
+                        font-weight: 900;
+                        font-size: 1.2rem;
+
+                        .rating-num{
+                            position: relative;
+                            bottom: 3px;
+                            font-size: 0.9rem;
+                        }
+                    }
+
+                    .total-ratings{
+                        font-size: 11px;
+                        font-weight: 600;
+                        color: grey;
+                        padding-top: 10px;
+                    }
+                }
+            }
+        }
+
+        .time-cost-box{
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgb(165, 165, 165);
+
+            .time-box, .cost-box{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 800;
+                font-size: 0.8rem;
+            }
+        }
+
+        .bottom{
+            padding: 10px;
+            background-color: #F1F1F6;
+            min-height: 200px;
+
+            .restaurant-license{
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid grey;
+                padding-bottom: 10px;
+
+                .fssai-img{  
+                    height: 30px;
+                    width: 60px;
+                    margin-right: 16px;
+                    display: inline-block;
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                span{
+                    font-size: 0.8rem;
+                    color: grey;
+                }
+
+            }
+
+            .restaurant-details{
+                padding-top: 20px;
+
+                .name{
+                    color: grey;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+        }
+
+            
+    }
+        
+}

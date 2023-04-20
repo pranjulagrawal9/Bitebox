@@ -1,0 +1,16 @@
+.food-category{
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+        cursor: pointer;
+        margin-block: 20px;
+    }
+
+    .separator{
+        width: 100%;
+        height: 15px;
+        background-color: #F1F1F6;
+    }
+}

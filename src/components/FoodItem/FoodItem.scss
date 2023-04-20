@@ -1,0 +1,64 @@
+.food-item{
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 30px;
+    margin-top: 20px;
+
+    .left{
+        flex: 1;
+        padding-right: 25px;
+
+        .veg-non-veg-icon{
+            width: 18px;
+
+            img{
+                width: 100%;
+            }
+        }
+
+        .food-name{
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .description{
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: grey;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+    }
+
+    .right{
+
+        .food-image{
+            width: 118px;
+            height: 96px;
+            position: relative;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 6px;
+            }
+        }
+
+        button{
+            background: none;
+            border: 1px solid #d4d5d9;
+            width: 96px;
+            height: 36px;
+            color: #60b246;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 3px 8px #e9e9eb;
+            font-weight: 600;
+            position: absolute;
+            left: 10%;
+            bottom: -10px;
+            background-color: white;
+        }
+    }
+}

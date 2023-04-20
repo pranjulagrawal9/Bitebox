@@ -1,0 +1,27 @@
+.footer{
+    padding-inline: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #000;
+    padding-block: 50px;
+
+    .items{
+        flex: 1;
+        min-width: 200px;
+    }
+
+    h3{
+        color: grey;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    ul{
+        color: white;
+
+        li{
+            margin-bottom: 15px;
+        }
+    }
+}

@@ -18,3 +18,9 @@ a{
 ul{
     list-style: none;
 }
+
+.center-with-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

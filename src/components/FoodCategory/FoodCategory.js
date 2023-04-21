@@ -3,7 +3,7 @@ import './FoodCategory.scss'
 import {SlArrowDown} from 'react-icons/sl'
 import FoodItem from '../FoodItem/FoodItem'
 
-function FoodCategory() {
+function FoodCategory({itemCards, title}) {
 
     const categoryRef = useRef(null);
     function toggleFoodItems(){
@@ -16,14 +16,14 @@ function FoodCategory() {
   return (
     <div className='food-category'>
         <div className="title" onClick={toggleFoodItems} >
-            <h3>Recommended (27)</h3>
+            <h3>{title} {`(${itemCards.length})`}</h3>
             <SlArrowDown />
         </div>
         
         <div className="food-items" ref={categoryRef} style={{display:"block"}} >
-            <FoodItem />
-            <FoodItem />
-            <FoodItem />
+            {itemCards?.map((card)=> (
+                <FoodItem {...card.card.info} key={card.card.info.id} />
+            ))}
         </div>
         <div className="separator"></div>
     </div>

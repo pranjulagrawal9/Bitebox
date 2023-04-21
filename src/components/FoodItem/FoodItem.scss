@@ -45,7 +45,7 @@
             }
         }
 
-        button{
+        .add-btn{
             background: none;
             border: 1px solid #d4d5d9;
             width: 96px;
@@ -59,6 +59,10 @@
             left: 10%;
             bottom: -10px;
             background-color: white;
+        }
+
+        .img-not-present{
+            position: static;
         }
     }
 }

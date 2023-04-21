@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./RestaurantInfo.scss";
 import { useParams } from "react-router-dom";
 import { GrStar } from "react-icons/gr";
@@ -8,9 +8,12 @@ function RestaurantInfo() {
   const { restaurantURL } = useParams();
   const array = restaurantURL.split("-");
   const restaurantId = array[array.length - 1];
+  const [restaurantData, setRestaurantData] = useState([]);
+  const [foodCategories, setFoodCategories] = useState([]);
+  const [licenseInfo, setLicenseInfo] = useState({});
 
   useEffect(() => {
-    // getRestaurantData();
+    getRestaurantData();
   }, []);
 
   async function getRestaurantData() {
@@ -18,23 +21,28 @@ function RestaurantInfo() {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();
-    console.log(jsonData);
+    setRestaurantData(jsonData.data.cards);
+
+    const foodCategories= jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards.filter((category)=> category.card.card["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory");
+    setFoodCategories(foodCategories);
+    
+    const licenseInfo= jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards.find((card)=> card.card.card["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo");
+    setLicenseInfo(licenseInfo);
   }
 
   return (
     <div className="restaurant-info">
       <div className="container">
         <h6 className="path">
-          Home / Aligarh / Civil Lines / Kwality Walls Frozen Dessert and Ice
-          Cream Shop
+          {`Home / ${restaurantData[0]?.card?.card?.info?.city} / ${restaurantData[0]?.card?.card?.info?.areaName} / ${restaurantData[0]?.card?.card?.info?.name}`}
         </h6>
         <div className="top-section">
           <div className="left">
             <h2 className="restaurant-name">
-              Kwality Walls Frozen Dessert And Ice Cream Shop
+              {restaurantData[0]?.card?.card?.info?.name}
             </h2>
-            <h5 className="cuisines">Desserts, Ice Cream</h5>
-            <h5 className="area-distance">Civil Lines, 1.6 km</h5>
+            <h5 className="cuisines">{restaurantData[0]?.card?.card?.info?.cuisines.join(", ")}</h5>
+            <h5 className="area-distance">{restaurantData[0]?.card?.card?.info?.areaName}, {restaurantData[0]?.card?.card?.info?.sla?.lastMileTravelString}</h5>
           </div>
           <div className="right">
             <div className="rating-box">
@@ -42,9 +50,9 @@ function RestaurantInfo() {
                 <span>
                   <GrStar />
                 </span>
-                <span className="rating-num">4.3</span>
+                <span className="rating-num">{restaurantData[0]?.card?.card?.info?.avgRatingString}</span>
               </div>
-              <div className="total-ratings">1K+ ratings</div>
+              <div className="total-ratings">{restaurantData[0]?.card?.card?.info?.totalRatingsString}</div>
             </div>
           </div>
         </div>
@@ -69,7 +77,7 @@ function RestaurantInfo() {
                 fill="#3E4152"
               ></path>
             </svg>
-            <span>21 MINS</span>
+            <span>{restaurantData[0]?.card?.card?.info?.sla?.slaString}</span>
           </div>
           <div className="cost-box">
             <svg
@@ -91,15 +99,14 @@ function RestaurantInfo() {
                 fill="#3E4152"
               ></path>
             </svg>
-            <span>₹300 for two</span>
+            <span>{restaurantData[0]?.card?.card?.info?.costForTwoMessage}</span>
           </div>
         </div>
 
         <div className="food-categories">
-          <FoodCategory />
-          <FoodCategory />
-          <FoodCategory />
-          <FoodCategory />
+          {foodCategories?.map((category)=>(
+            <FoodCategory {...category.card.card} key={category.card.card.title} />
+          ))}
         </div>
 
         <div className="bottom">
@@ -107,11 +114,11 @@ function RestaurantInfo() {
             <div className="fssai-img">
               <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_120,h_60/fssai_final_edss9i" alt="fssai" />
             </div>
-            <span>License No. 22720133000746</span>
+            <span>{licenseInfo?.card?.card?.text[0]}</span>
           </div>
           
           <div className="restaurant-details">
-            <div className="name">Kwality Walls Frozen Dessert And Ice Cream Shop</div>
+            <div className="name">{restaurantData[0]?.card?.card?.info?.name}</div>
           </div>
         </div>
       </div>

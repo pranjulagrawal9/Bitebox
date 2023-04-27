@@ -4,10 +4,26 @@
 
     .restaurant-img{
         width: 254px;
+        height: 160px;
+        background-color: rgb(187, 187, 187);
         margin-bottom: 15px;
 
         img{
             width: 100%;
+            opacity: 0;
+        }
+
+        .animate{
+            animation: fadein 0.5s forwards;
+        }
+
+        @keyframes fadein {
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
         }
     }
 

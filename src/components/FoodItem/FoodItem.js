@@ -16,7 +16,7 @@ function FoodItem({name, price, description, imageId, itemAttribute}) {
         </div>
         <div className="right">
             <div className={imageId ? "food-image" : "food-image center-with-flex"}>
-                {imageId && <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${imageId}`} alt={name} />}
+                {imageId && <img src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${imageId}`} alt={name} loading='lazy' />}
                 <button className={imageId ? "add-btn" : "add-btn img-not-present" }>ADD</button>
             </div>
         </div>

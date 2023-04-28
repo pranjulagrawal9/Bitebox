@@ -1,5 +1,6 @@
 import React from "react";
 import "./NavBar.scss";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -89,21 +90,24 @@ function NavBar() {
           </span>
           <span>Sign In</span>
         </div>
-        <div className="menu-item">
-          <span className="icon">
-            <svg
-              className="cart-svg"
-              viewBox="-1 0 37 32"
-              height="20"
-              width="20"
-              fill="#686b78"
-            >
-              <path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path>
-            </svg>
-            <span className="cart-count">0</span>
-          </span>
-          <span>Cart</span>
-        </div>
+        <Link to="/checkout">
+          <div className="menu-item">
+            <span className="icon">
+              <svg
+                className="cart-svg"
+                viewBox="-1 0 37 32"
+                height="20"
+                width="20"
+                fill="#686b78"
+              >
+                <path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path>
+              </svg>
+              <span className="cart-count">0</span>
+            </span>
+            <span>Cart</span>
+          </div>
+        </Link>
+        
       </div>
     </nav>
   );

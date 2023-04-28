@@ -8,7 +8,6 @@ function RestaurantCard({resData}) {
 
   function onImageLoad(event){
     event.target.classList.add("animate");
-    console.log(event.target);
   }
 
   return (

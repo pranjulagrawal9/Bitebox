@@ -59,6 +59,11 @@
             left: 10%;
             bottom: -10px;
             background-color: white;
+
+            .plus-minus-btn{
+                display: flex;
+                justify-content: space-around;
+            }
         }
 
         .img-not-present{

@@ -93,3 +93,50 @@
     }
   }
 }
+
+.empty-cart{
+  min-height: calc(100vh - 74px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .img-container{
+    width: 271px;
+    height: 256px;
+    background-image: url("https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0");
+    background-size: cover;
+  }
+
+  .text{
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #535665;
+  }
+
+  .sub-heading{
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+    color: #7e808c;
+  }
+
+  .see-btn{
+    margin-top: 30px;
+    padding: 11px 20px;
+    text-transform: uppercase;
+    background-color: #fc8019;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+
+    &:hover{
+      -webkit-box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
+      box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
+    }
+  }
+}

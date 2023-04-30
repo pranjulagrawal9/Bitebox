@@ -8,6 +8,7 @@
     .item-name {
       display: flex;
       gap: 5px;
+      width: 70%;
 
       .veg-icon {
         width: 20px;
@@ -28,6 +29,7 @@
       padding: 5px;
       align-items: center;
       border: 1px solid grey;
+      width: 80px;
 
       .count{
           font-size: 12px;
@@ -39,5 +41,11 @@
           display: flex;
           cursor: pointer;
       }
+    }
+
+    .price{
+      width: 65px;
+      flex-shrink: 0;
+      text-align: right;
     }
   }

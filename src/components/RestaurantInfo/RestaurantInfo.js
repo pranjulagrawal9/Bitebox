@@ -12,6 +12,10 @@ function RestaurantInfo() {
   const [restaurantData, setRestaurantData] = useState([]);
   const [foodCategories, setFoodCategories] = useState([]);
   const [licenseInfo, setLicenseInfo] = useState({});
+  // console.log(restaurantData);
+
+  if(restaurantData.length!==0)
+    var {city, areaName, name, cuisines, sla, costForTwoMessage, avgRatingString, totalRatingsString}= restaurantData;
 
   useEffect(() => {
     getRestaurantData();
@@ -23,7 +27,7 @@ function RestaurantInfo() {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();
-    setRestaurantData(jsonData.data.cards);
+    setRestaurantData(jsonData.data.cards[0].card.card.info);
 
     const foodCategories =
       jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards.filter(
@@ -50,21 +54,20 @@ function RestaurantInfo() {
         ) : (
           <>
             <h6 className="path">
-              {`Home / ${restaurantData[0]?.card?.card?.info?.city} / ${restaurantData[0]?.card?.card?.info?.areaName} / ${restaurantData[0]?.card?.card?.info?.name}`}
+              {`Home / ${city} / ${areaName} / ${name}`}
             </h6>
             <div className="top-section">
               <div className="left">
                 <h2 className="restaurant-name">
-                  {restaurantData[0]?.card?.card?.info?.name}
+                  {name}
                 </h2>
                 <h5 className="cuisines">
-                  {restaurantData[0]?.card?.card?.info?.cuisines.join(", ")}
+                  {cuisines.join(", ")}
                 </h5>
                 <h5 className="area-distance">
-                  {restaurantData[0]?.card?.card?.info?.areaName},{" "}
+                  {areaName},{" "}
                   {
-                    restaurantData[0]?.card?.card?.info?.sla
-                      ?.lastMileTravelString
+                    sla?.lastMileTravelString
                   }
                 </h5>
               </div>
@@ -75,11 +78,11 @@ function RestaurantInfo() {
                       <GrStar />
                     </span>
                     <span className="rating-num">
-                      {restaurantData[0]?.card?.card?.info?.avgRatingString}
+                      {avgRatingString}
                     </span>
                   </div>
                   <div className="total-ratings">
-                    {restaurantData[0]?.card?.card?.info?.totalRatingsString}
+                    {totalRatingsString}
                   </div>
                 </div>
               </div>
@@ -106,7 +109,7 @@ function RestaurantInfo() {
                   ></path>
                 </svg>
                 <span>
-                  {restaurantData[0]?.card?.card?.info?.sla?.slaString}
+                  {sla?.slaString}
                 </span>
               </div>
               <div className="cost-box">
@@ -130,7 +133,7 @@ function RestaurantInfo() {
                   ></path>
                 </svg>
                 <span>
-                  {restaurantData[0]?.card?.card?.info?.costForTwoMessage}
+                  {costForTwoMessage}
                 </span>
               </div>
             </div>
@@ -138,7 +141,7 @@ function RestaurantInfo() {
             <div className="food-categories">
               {foodCategories?.map((category) => (
                 <FoodCategory
-                  {...category.card.card}
+                  {...{...category.card.card, restaurantData}}
                   key={category.card.card.title}
                 />
               ))}
@@ -157,7 +160,7 @@ function RestaurantInfo() {
 
               <div className="restaurant-details">
                 <div className="name">
-                  {restaurantData[0]?.card?.card?.info?.name}
+                  {name}
                 </div>
               </div>
             </div>

@@ -2,26 +2,31 @@ import "./CartItem.scss";
 import vegIcon from "../../assets/images/veg-icon.png";
 import nonVegIcon from "../../assets/images/non-veg-icon.png";
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
+import { useDispatch } from "react-redux";
+import { addItem, removeItem } from "../../store/slices/cartSlice";
 
-function CartItem() {
+function CartItem(props) {
+  const {id, name, count, price, itemAttribute}= props;
+  const dispatch= useDispatch();
+
   return (
     <div className="cart-item">
       <div className="item-name">
         <span className="veg-icon">
-          <img src={vegIcon} alt="" />
+          <img src={itemAttribute.vegClassifier==="VEG" ? vegIcon: nonVegIcon} />
         </span>
-        Cadbury Crackle 700ml
+        {name}
       </div>
       <div className="button">
         <span className="minus">
-          <AiOutlineMinus />
+          <AiOutlineMinus onClick={()=> dispatch(removeItem(id))} />
         </span>
-        <span className="count">2</span>
+        <span className="count">{count}</span>
         <span className="plus">
-          <AiOutlinePlus />
+          <AiOutlinePlus onClick={()=> dispatch(addItem(props))} />
         </span>
       </div>
-      <div className="price">₹ 758</div>
+      <div className="price">₹ {price/100}</div>
     </div>
   );
 }

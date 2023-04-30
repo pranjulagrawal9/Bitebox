@@ -31,10 +31,16 @@
                     stroke-width: 0;
                 }
 
-                .cart-svg{
+                .cart-svg-empty{
                     fill: #fff;
                     stroke-width: 2px;
                     stroke: black;
+                }
+
+                .cart-svg-not-empty{
+                    fill: #60b246;
+                    stroke-width: 2px;
+                    stroke: #60b246;
                 }
             }
 
@@ -44,6 +50,10 @@
                 left: 50%;
                 transform: translate(-50%,-60%);
                 font-size: 14px;
+            }
+
+            .white{
+                color: white;
             }
         }
     }

@@ -27,10 +27,16 @@ function RestaurantInfo() {
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();
+    console.log(jsonData);
     setRestaurantData(jsonData.data.cards[0].card.card.info);
+    let itemIndex;
+    if(jsonData.data.cards.length===3)
+      itemIndex=2;
+    else
+      itemIndex=1;
 
     const foodCategories =
-      jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards.filter(
+      jsonData.data.cards[itemIndex].groupedCard.cardGroupMap.REGULAR.cards.filter(
         (category) =>
           category.card.card["@type"] ===
           "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -38,7 +44,7 @@ function RestaurantInfo() {
     setFoodCategories(foodCategories);
 
     const licenseInfo =
-      jsonData.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards.find(
+      jsonData.data.cards[itemIndex].groupedCard.cardGroupMap.REGULAR.cards.find(
         (card) =>
           card.card.card["@type"] ===
           "type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo"

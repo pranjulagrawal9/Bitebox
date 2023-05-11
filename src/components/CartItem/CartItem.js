@@ -3,7 +3,7 @@ import vegIcon from "../../assets/images/veg-icon.png";
 import nonVegIcon from "../../assets/images/non-veg-icon.png";
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
 import { useDispatch } from "react-redux";
-import { addItem, removeItem } from "../../store/slices/cartSlice";
+import { addItem, increaseItem, removeItem } from "../../store/slices/cartSlice";
 
 function CartItem(props) {
   const {id, name, count, price, itemAttribute}= props;
@@ -23,7 +23,7 @@ function CartItem(props) {
         </span>
         <span className="count">{count}</span>
         <span className="plus">
-          <AiOutlinePlus onClick={()=> dispatch(addItem(props))} />
+          <AiOutlinePlus onClick={()=> dispatch(increaseItem(id))} />
         </span>
       </div>
       <div className="price">₹ {price/100}</div>

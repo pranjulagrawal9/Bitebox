@@ -38,9 +38,14 @@ export const cartSlice= createSlice({
 
             if(state.items.length===0)
                 state.restaurantInfo={};
+        },
+
+        increaseItem: (state, action)=>{
+            const item= state.items.find((item)=> item.id===action.payload);
+            item.count++;
         }
     }
 })
 
-export const {addItem, removeItem} = cartSlice.actions;
+export const {addItem, removeItem, increaseItem} = cartSlice.actions;
 export default cartSlice.reducer;

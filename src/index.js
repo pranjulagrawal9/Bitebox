@@ -5,6 +5,7 @@ import RestaurantInfo from "./components/RestaurantInfo/RestaurantInfo";
 import CardContainer from "./components/CardContainer/CardContainer";
 import { lazy, Suspense } from "react";
 import CssLoader from "./components/CssLoader/CssLoader";
+import Search from "./components/Search/Search";
 const Cart = lazy(() => import("./components/Cart/Cart"));
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             <Cart />
           </Suspense>
         )
+      },
+      {
+        path: "/search",
+        element: <Search />
       }
     ]
   }

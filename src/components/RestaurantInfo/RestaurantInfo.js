@@ -51,9 +51,7 @@ function RestaurantInfo() {
     );
     const jsonData = await response.json();
     setRestaurantData(jsonData.data.cards[0].card.card.info);
-    let itemIndex;
-    if (jsonData.data.cards.length === 3) itemIndex = 2;
-    else itemIndex = 1;
+    const itemIndex= jsonData.data.cards.length-1;
 
     const foodCategories = jsonData.data.cards[
       itemIndex

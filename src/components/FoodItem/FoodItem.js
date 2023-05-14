@@ -7,10 +7,11 @@ import { addItem, removeItem } from "../../store/slices/cartSlice";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 function FoodItem(props) {
-  const { id, name, price, description, imageId, itemAttribute } = props.foodItem;
-  const cartDetails= {
+  const { id, name, price, description, imageId, itemAttribute } =
+    props.foodItem;
+  const cartDetails = {
     itemDetails: props.foodItem,
-    restaurantDetails: props.restaurantData
+    restaurantDetails: props.restaurantData,
   };
   const dispatch = useDispatch();
   const item = useSelector((store) =>
@@ -39,19 +40,29 @@ function FoodItem(props) {
               loading="lazy"
             />
           )}
-          <button
-            className={imageId ? "add-btn" : "add-btn img-not-present"}
-          >
+          <button className={imageId ? "add-btn" : "add-btn img-not-present"}>
             {!item ? (
-              <div onClick={() => dispatch(addItem(cartDetails))}>ADD</div>
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onClick={() => dispatch(addItem(cartDetails))}
+              >
+                ADD
+              </div>
             ) : (
               <div className="plus-minus-btn">
                 <span>
-                  <AiOutlineMinus onClick={()=> dispatch(removeItem(id))} />
+                  <AiOutlineMinus onClick={() => dispatch(removeItem(id))} />
                 </span>
                 <span>{item.count}</span>
                 <span>
-                  <AiOutlinePlus onClick={() => dispatch(addItem(cartDetails))} />
+                  <AiOutlinePlus
+                    onClick={() => dispatch(addItem(cartDetails))}
+                  />
                 </span>
               </div>
             )}

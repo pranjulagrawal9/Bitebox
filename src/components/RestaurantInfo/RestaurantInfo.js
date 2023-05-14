@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { GrStar } from "react-icons/gr";
 import FoodCategory from "../FoodCategory/FoodCategory";
 import RestaurantInfoShimmer from "../RestaurantInfoShimmer/RestaurantInfoShimmer";
+import ResetCartModal from "../ResetCartModal/ResetCartModal";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../store/slices/cartSlice";
 
 function RestaurantInfo() {
   const { restaurantURL } = useParams();
@@ -12,43 +15,62 @@ function RestaurantInfo() {
   const [restaurantData, setRestaurantData] = useState([]);
   const [foodCategories, setFoodCategories] = useState([]);
   const [licenseInfo, setLicenseInfo] = useState({});
-  // console.log(restaurantData);
+  const dispatch= useDispatch();
+  const isOtherRestaurant = useSelector(
+    (store) => store.cart.isOtherRestaurant
+  );
 
-  if(restaurantData.length!==0)
-    var {city, areaName, name, cuisines, sla, costForTwoMessage, avgRatingString, totalRatingsString}= restaurantData;
+  if (restaurantData.length !== 0)
+    var {
+      city,
+      areaName,
+      name,
+      cuisines,
+      sla,
+      costForTwoMessage,
+      avgRatingString,
+      totalRatingsString,
+    } = restaurantData;
 
   useEffect(() => {
     getRestaurantData();
-   
+
   }, []);
+
+  useEffect(() => {
+    return ()=>{
+      if(isOtherRestaurant)
+        dispatch(closeModal());
+    }
+  }, [isOtherRestaurant])
+  
 
   async function getRestaurantData() {
     const response = await fetch(
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();
-    console.log(jsonData);
     setRestaurantData(jsonData.data.cards[0].card.card.info);
     let itemIndex;
-    if(jsonData.data.cards.length===3)
-      itemIndex=2;
-    else
-      itemIndex=1;
+    if (jsonData.data.cards.length === 3) itemIndex = 2;
+    else itemIndex = 1;
 
-    const foodCategories =
-      jsonData.data.cards[itemIndex].groupedCard.cardGroupMap.REGULAR.cards.filter(
-        (category) =>
-          category.card.card["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-      );
+    const foodCategories = jsonData.data.cards[
+      itemIndex
+    ].groupedCard.cardGroupMap.REGULAR.cards.filter(
+      (category) =>
+        category.card.card["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
     setFoodCategories(foodCategories);
 
-    const licenseInfo =
-      jsonData.data.cards[itemIndex].groupedCard.cardGroupMap.REGULAR.cards.find(
-        (card) =>
-          card.card.card["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo"
-      );
+    const licenseInfo = jsonData.data.cards[
+      itemIndex
+    ].groupedCard.cardGroupMap.REGULAR.cards.find(
+      (card) =>
+        card.card.card["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo"
+    );
     setLicenseInfo(licenseInfo);
   }
 
@@ -59,22 +81,13 @@ function RestaurantInfo() {
           <RestaurantInfoShimmer />
         ) : (
           <>
-            <h6 className="path">
-              {`Home / ${city} / ${areaName} / ${name}`}
-            </h6>
+            <h6 className="path">{`Home / ${city} / ${areaName} / ${name}`}</h6>
             <div className="top-section">
               <div className="left">
-                <h2 className="restaurant-name">
-                  {name}
-                </h2>
-                <h5 className="cuisines">
-                  {cuisines.join(", ")}
-                </h5>
+                <h2 className="restaurant-name">{name}</h2>
+                <h5 className="cuisines">{cuisines.join(", ")}</h5>
                 <h5 className="area-distance">
-                  {areaName},{" "}
-                  {
-                    sla?.lastMileTravelString
-                  }
+                  {areaName}, {sla?.lastMileTravelString}
                 </h5>
               </div>
               <div className="right">
@@ -83,13 +96,9 @@ function RestaurantInfo() {
                     <span>
                       <GrStar />
                     </span>
-                    <span className="rating-num">
-                      {avgRatingString}
-                    </span>
+                    <span className="rating-num">{avgRatingString}</span>
                   </div>
-                  <div className="total-ratings">
-                    {totalRatingsString}
-                  </div>
+                  <div className="total-ratings">{totalRatingsString}</div>
                 </div>
               </div>
             </div>
@@ -114,9 +123,7 @@ function RestaurantInfo() {
                     fill="#3E4152"
                   ></path>
                 </svg>
-                <span>
-                  {sla?.slaString}
-                </span>
+                <span>{sla?.slaString}</span>
               </div>
               <div className="cost-box">
                 <svg
@@ -138,16 +145,14 @@ function RestaurantInfo() {
                     fill="#3E4152"
                   ></path>
                 </svg>
-                <span>
-                  {costForTwoMessage}
-                </span>
+                <span>{costForTwoMessage}</span>
               </div>
             </div>
 
             <div className="food-categories">
               {foodCategories?.map((category) => (
                 <FoodCategory
-                  {...{...category.card.card, restaurantData}}
+                  {...{ ...category.card.card, restaurantData }}
                   key={category.card.card.title}
                 />
               ))}
@@ -165,14 +170,17 @@ function RestaurantInfo() {
               </div>
 
               <div className="restaurant-details">
-                <div className="name">
-                  {name}
-                </div>
+                <div className="name">{name}</div>
               </div>
             </div>
           </>
         )}
       </div>
+      {isOtherRestaurant && (
+        <div className="reset-modal">
+          <ResetCartModal />
+        </div>
+      )}
     </div>
   );
 }

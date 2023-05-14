@@ -1,76 +1,95 @@
-.navbar{
-    box-shadow: 0px 1px 27px -14px grey;
+.navbar {
+  box-shadow: 0px 1px 27px -14px grey;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  align-items: center;
+  position: fixed;
+  background-color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  .left {
     display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
+    gap: 50px;
     align-items: center;
-    position: fixed;
-    background-color: white;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
 
-    .left{
-        display: flex;
-        gap: 50px;
-        align-items: center;
+    .logo {
+      scale: 1;
+      transition: scale 0.3s ease;
 
-        .logo{
-            scale: 1;
-            transition: scale .3s ease;
-
-            &:hover{
-                scale: 1.1;
-            }
-        }
+      &:hover {
+        scale: 1.1;
+      }
     }
+  }
 
-    .right{
-        display: flex;
-        gap: 50px;
+  .right {
+    display: flex;
+    gap: 50px;
 
-        .menu-item{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
+    .menu-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      cursor: pointer;
 
-            .icon{
-                position: relative;
-
-                svg{
-                    stroke: currentColor;
-                    fill: #3d4152;
-                    stroke-width: 0;
-                }
-
-                .cart-svg-empty{
-                    fill: #fff;
-                    stroke-width: 2px;
-                    stroke: black;
-                }
-
-                .cart-svg-not-empty{
-                    fill: #60b246;
-                    stroke-width: 2px;
-                    stroke: #60b246;
-                }
-            }
-
-            .cart-count{
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-60%);
-                font-size: 14px;
-            }
-
-            .white{
-                color: white;
-            }
+      &:hover {
+        color: #fc8523;
+        .icon {
+          svg.grey {
+            fill: #fc8523;
+          }
         }
-    }
+      }
 
+      .icon {
+        position: relative;
+
+        svg.grey {
+          stroke: currentColor;
+          fill: #3d4152;
+          stroke-width: 0;
+        }
+
+        svg.orange {
+          stroke: currentColor;
+          fill: #fc8523;
+          stroke-width: 0;
+        }
+
+        .cart-svg-empty {
+          fill: #fff;
+          stroke-width: 2px;
+          stroke: black;
+        }
+
+        .cart-svg-not-empty {
+          fill: #60b246;
+          stroke-width: 2px;
+          stroke: #60b246;
+        }
+      }
+
+      .cart-count {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -60%);
+        font-size: 14px;
+      }
+
+      .white {
+        color: white;
+      }
+    }
+  }
+}
+
+.orange {
+  color: #fc8523;
 }

@@ -2,12 +2,15 @@ import { useState } from "react";
 import "./Search.scss";
 import { useEffect } from "react";
 import SearchItem from "../SearchItem/SearchItem";
-import { Link } from "react-router-dom";
+import { Link, useFetcher, useFetchers } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { toggleOnSearch } from "../../store/slices/highlightNavItemSlice";
 
 function Search() {
   const [searchText, setSearchText] = useState("");
   const [foundItems, setFoundItems] = useState([]);
+  const dispatch= useDispatch();
 
   useEffect(() => {
     const timeout= setTimeout(() => {
@@ -21,6 +24,15 @@ function Search() {
       clearTimeout(timeout);
     }
   }, [searchText]);
+
+  useEffect(() => {
+    dispatch(toggleOnSearch());
+
+    return ()=>{
+      dispatch(toggleOnSearch());
+    }
+  }, [])
+  
 
   async function fetchData() {
     const response = await fetch(

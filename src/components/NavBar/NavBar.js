@@ -45,7 +45,7 @@ function NavBar() {
           </div>
         </Link>
         
-        <div className="address">Address</div>
+        <div className="address">Manik Chowk, Aligarh- 202001</div>
       </div>
       <div className="right">
         <Link to="/search">

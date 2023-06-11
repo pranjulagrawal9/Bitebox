@@ -36,7 +36,7 @@ function Search() {
 
   async function fetchData() {
     const response = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=27.882255&lng=78.071612&str=${searchText}`
+      'https://corsproxy.io/?' + encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/search/suggest?lat=27.882255&lng=78.071612&str=${searchText}`)
     );
     const jsonData = await response.json();
     const suggestions = jsonData.data.suggestions.filter(

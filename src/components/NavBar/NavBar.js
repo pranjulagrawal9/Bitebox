@@ -45,7 +45,7 @@ function NavBar() {
           </div>
         </Link>
         
-        <div className="address">Manik Chowk, Aligarh- 202001</div>
+        <div className="address">Aligarh- 202001</div>
       </div>
       <div className="right">
         <Link to="/search">
@@ -64,7 +64,7 @@ function NavBar() {
           </div>
         </Link>
         
-        <div className="menu-item">
+        <div className="menu-item offers">
           <span className="icon">
             <svg
               viewBox="0 0 32 32"
@@ -77,7 +77,7 @@ function NavBar() {
           </span>
           <span>Offers</span>
         </div>
-        <div className="menu-item">
+        <div className="menu-item help">
           <span className="icon">
             <svg
               viewBox="6 -1 12 25"
@@ -90,7 +90,7 @@ function NavBar() {
           </span>
           <span>Help</span>
         </div>
-        <div className="menu-item">
+        <div className="menu-item signin">
           <span className="icon">
             <svg
               viewBox="6 0 12 24"

@@ -98,3 +98,9 @@
 .orange {
   color: #fc8523;
 }
+
+@media screen and (max-width: 1024px) {
+  .navbar .right .offers, .navbar .right .help, .navbar .right .signin{
+    display: none;
+  }
+}

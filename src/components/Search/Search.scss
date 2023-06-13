@@ -10,6 +10,7 @@
     .container {
       border: 1px solid grey;
       width: 60vw;
+      min-width: fit-content;
       display: flex;
       align-items: center;
       padding-right: 13px;

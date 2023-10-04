@@ -55,9 +55,13 @@ function CardContainer() {
   async function fetchMoreData() {
     setIsLoading(true);
     const response = await fetch(
-      'https://corsproxy.io/?' + encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.8973944&lng=78.0880129&offset=${offset}&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING`)
+      "https://corsproxy.io/?" +
+        encodeURIComponent(
+          `https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.8973944&lng=78.0880129&offset=${offset}&sortBy=RELEVANCE&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING`
+        )
     );
     const jsonData = await response.json();
+    console.log(jsonData);
     setTotalRestaurants(jsonData.data.totalSize);
     const newCardsArray = jsonData.data.cards.map((card) => card.data);
     const newCards = newCardsArray.filter(

@@ -15,7 +15,7 @@ function RestaurantInfo() {
   const [restaurantData, setRestaurantData] = useState([]);
   const [foodCategories, setFoodCategories] = useState([]);
   const [licenseInfo, setLicenseInfo] = useState({});
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   const isOtherRestaurant = useSelector(
     (store) => store.cart.isOtherRestaurant
   );
@@ -34,24 +34,24 @@ function RestaurantInfo() {
 
   useEffect(() => {
     getRestaurantData();
-
   }, []);
 
   useEffect(() => {
-    return ()=>{
-      if(isOtherRestaurant)
-        dispatch(closeModal());
-    }
-  }, [isOtherRestaurant])
-  
+    return () => {
+      if (isOtherRestaurant) dispatch(closeModal());
+    };
+  }, [isOtherRestaurant]);
 
   async function getRestaurantData() {
     const response = await fetch(
-      'https://corsproxy.io/?' + encodeURIComponent(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`)
+      "https://corsproxy.io/?" +
+        encodeURIComponent(
+          `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
+        )
     );
     const jsonData = await response.json();
     setRestaurantData(jsonData.data.cards[0].card.card.info);
-    const itemIndex= jsonData.data.cards.length-1;
+    const itemIndex = jsonData.data.cards.length - 1;
 
     const foodCategories = jsonData.data.cards[
       itemIndex

@@ -47,8 +47,10 @@ function CardContainer() {
     setIsLoading(true);
     const response = await fetch(SWIGGY_RESTAURANTS_API_URI);
     const jsonData = await response.json();
-    setRestaurants(jsonData?.data?.cards[2]?.data?.data?.cards);
-    setTotalRestaurants(jsonData.data.cards[2].data.data.totalRestaurants);
+    setRestaurants(
+      jsonData?.data?.cards[2]?.card.card.gridElements.infoWithStyle.restaurants
+    );
+    setTotalRestaurants(jsonData.data.cards[4].card.card.restaurantCount);
     setIsLoading(false);
   }
 
@@ -81,21 +83,14 @@ function CardContainer() {
       <div className="card-container">
         {restaurants?.map((restaurant) => (
           <Link
-            to={`/restaurants/${restaurant.data.name
-              .toLowerCase()
-              .split(" ")
-              .join("-")}-${restaurant.data.locality
-              .toLowerCase()
-              .split(" ")
-              .join("-")}-${restaurant.data.area
-              .toLowerCase()
-              .split(" ")
-              .join("-")}-${restaurant.data.slugs.city.toLowerCase()}-${
-              restaurant.data.id
+            to={`/restaurants/${
+              restaurant.cta.link.split("/")[
+                restaurant.cta.link.split("/").length - 1
+              ]
             }`}
-            key={restaurant.data.id}
+            key={restaurant.info.id}
           >
-            <RestaurantCard resData={{ ...restaurant.data }} />
+            <RestaurantCard resData={{ ...restaurant.info }} />
           </Link>
         ))}
 

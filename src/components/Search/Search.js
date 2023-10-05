@@ -2,41 +2,42 @@ import { useState } from "react";
 import "./Search.scss";
 import { useEffect } from "react";
 import SearchItem from "../SearchItem/SearchItem";
-import { Link, useFetcher, useFetchers } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleOnSearch } from "../../store/slices/highlightNavItemSlice";
 
 function Search() {
   const [searchText, setSearchText] = useState("");
   const [foundItems, setFoundItems] = useState([]);
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
+  const userLocation = useSelector((store) => store.user.coordinates);
 
   useEffect(() => {
-    const timeout= setTimeout(() => {
-      if (searchText.length > 1)
-       fetchData();
-      else
-       setFoundItems([]);
+    const timeout = setTimeout(() => {
+      if (searchText.length > 1) fetchData();
+      else setFoundItems([]);
     }, 200);
 
-    return ()=>{
+    return () => {
       clearTimeout(timeout);
-    }
+    };
   }, [searchText]);
 
   useEffect(() => {
     dispatch(toggleOnSearch());
 
-    return ()=>{
+    return () => {
       dispatch(toggleOnSearch());
-    }
-  }, [])
-  
+    };
+  }, []);
 
   async function fetchData() {
     const response = await fetch(
-      'https://corsproxy.io/?' + encodeURIComponent(`https://www.swiggy.com/dapi/restaurants/search/suggest?lat=27.882255&lng=78.071612&str=${searchText}`)
+      "https://corsproxy.io/?" +
+        encodeURIComponent(
+          `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=${userLocation.latitude}&lng=${userLocation.longitude}&str=${searchText}`
+        )
     );
     const jsonData = await response.json();
     const suggestions = jsonData.data.suggestions.filter(

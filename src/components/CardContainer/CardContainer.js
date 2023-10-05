@@ -7,13 +7,13 @@ import {
 } from "../../utils/constants";
 import ShimmerUI from "../ShimmerUI/ShimmerUI";
 import { Link } from "react-router-dom";
-import { setUserAdress } from "../../store/slices/userSlice";
-import { useDispatch } from "react-redux";
+import { setCoordinates, setUserAdress } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function CardContainer() {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [userLocation, setUserLocation] = useState(null);
+  const userLocation = useSelector((store) => store.user.coordinates);
   const dispatch = useDispatch();
 
   function getLocation() {
@@ -21,7 +21,7 @@ function CardContainer() {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
+          dispatch(setCoordinates({ latitude, longitude }));
           setIsLoading(true);
           const response = await fetch(
             GEOCODING_URI + `lat=${latitude}&lon=${longitude}`

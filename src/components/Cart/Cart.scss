@@ -11,10 +11,11 @@
     background-color: white;
     padding: 20px;
     display: flex;
+    margin-bottom: 20px;
 
     .item-details {
-        flex: 1;
-        border-right: 1px solid black;
+      flex: 1;
+      border-right: 1px solid black;
 
       .restaurant {
         display: flex;
@@ -48,81 +49,104 @@
       }
     }
 
-    .billing-details{
-        flex: 1;
-        padding: 10px;
+    .billing-details {
+      flex: 1;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      div {
         display: flex;
-        flex-direction: column;
-        gap: 10px;
+        justify-content: space-between;
+        color: grey;
+      }
 
-        h3{
-            margin-bottom: 20px;
-        }
+      .tax {
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
 
-        div{
-            display: flex;
-            justify-content: space-between;
-            color: grey;
-        }
+      .to-pay {
+        font-weight: 600;
+        color: black;
+      }
 
-        .tax{
-            border-bottom: 1px solid black;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+      .pay-now-btn {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
 
-        .to-pay{
-            font-weight: 600;
-            color: black;
+        button {
+          background-color: #60b246;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          color: white;
+          cursor: pointer;
         }
-
-        .pay-now-btn{
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            
-            button{
-                background-color:#60B246;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-                color: white;
-                cursor: pointer;
-            }
-        }
+      }
     }
   }
 }
 
-.empty-cart{
+@media screen and (max-width: 678px) {
+  .cart {
+    min-height: calc(100vh - 53px) !important;
+    .container {
+      flex-direction: column;
+      font-size: 12px;
+
+      .item-details {
+        border-right: none !important;
+      }
+
+      .item-details {
+        .restaurant {
+          .restaurant-img {
+            width: 50px !important;
+            height: 50px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.empty-cart {
   min-height: calc(100vh - 74px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  .img-container{
+  .img-container {
     width: 271px;
     height: 256px;
     background-image: url("https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0");
     background-size: cover;
   }
 
-  .text{
+  .text {
     margin-top: 24px;
     font-size: 20px;
     font-weight: 600;
     color: #535665;
   }
 
-  .sub-heading{
+  .sub-heading {
     font-size: 0.8rem;
     letter-spacing: 0.5px;
     margin-top: 8px;
     color: #7e808c;
   }
 
-  .see-btn{
+  .see-btn {
     margin-top: 30px;
     padding: 11px 20px;
     text-transform: uppercase;
@@ -133,10 +157,10 @@
     font-size: 15px;
     text-align: center;
 
-    &:hover{
-      -webkit-box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
-      -moz-box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
-      box-shadow: 0px 2px 10px -4px rgba(0,0,0,0.75);
+    &:hover {
+      -webkit-box-shadow: 0px 2px 10px -4px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 2px 10px -4px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 2px 10px -4px rgba(0, 0, 0, 0.75);
     }
   }
 }

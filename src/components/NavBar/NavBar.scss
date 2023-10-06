@@ -25,7 +25,7 @@
       }
     }
 
-    .address{
+    .address {
       font-size: small;
       color: rgb(74, 74, 74);
     }
@@ -100,7 +100,24 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .navbar .right .offers, .navbar .right .help, .navbar .right .signin{
+  .navbar .right .offers,
+  .navbar .right .help,
+  .navbar .right .signin {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .navbar {
+    padding: 0px 20px;
+  }
+  .logo {
+    svg {
+      width: 20px;
+    }
+  }
+
+  .address {
     display: none;
   }
 }

@@ -3,8 +3,7 @@
   <h3 align="center">Bitebox</h3>
 
   <p align="center">
-   A web application which lists all the restaurants and their
-menus available near a user’s location
+   A user-friendly web application that enables users to effortlessly discover nearby restaurants and explore their menus.
     <br/>
     <br/>
     <a href="https://bitebox.netlify.app">View Demo</a>

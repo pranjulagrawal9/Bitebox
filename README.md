@@ -28,7 +28,7 @@ menus available near a user’s location
 
 ## About The Project
 
-![Screen Shot](https://github.com/pranjulagrawal9/outfitly-frontend/blob/main/Outfitly.gif)
+![Screen Shot](https://github.com/pranjulagrawal9/Bitebox/blob/main/Bitebox.gif)
 
 • Bitebox is a web application which lists all the restaurants and their
 menus available near a user’s location.

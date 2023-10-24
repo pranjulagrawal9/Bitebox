@@ -23,7 +23,6 @@
 * [Getting Started](#getting-started)
   * [Installation](#installation)
 * [Contributing](#contributing)
-* [License](#license)
 
 ## About The Project
 

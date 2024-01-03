@@ -44,10 +44,8 @@ function RestaurantInfo() {
 
   async function getRestaurantData() {
     const response = await fetch(
-      "https://corsproxy.io/?" +
-        encodeURIComponent(
-          `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
-        )
+      "https://thingproxy.freeboard.io/fetch/" +
+        `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();
     setRestaurantData(jsonData.data.cards[0].card.card.info);

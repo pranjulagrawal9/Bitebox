@@ -44,7 +44,7 @@ function RestaurantInfo() {
 
   async function getRestaurantData() {
     const response = await fetch(
-      "http://localhost:8080/" +
+      process.env.REACT_APP_PROXY_URL +
         `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();

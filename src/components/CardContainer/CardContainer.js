@@ -24,7 +24,7 @@ function CardContainer() {
           dispatch(setCoordinates({ latitude, longitude }));
           setIsLoading(true);
           const response = await fetch(
-            GEOCODING_URI + `lat=${latitude}&lon=${longitude}`
+            GEOCODING_URI + `&lat=${latitude}&lon=${longitude}`
           );
           const geocodingData = await response.json();
           const userAddress = `${geocodingData.address.state_district}, ${geocodingData.address.state}, ${geocodingData.address.country}`;

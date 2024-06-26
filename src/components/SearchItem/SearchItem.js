@@ -1,13 +1,14 @@
+import { CLOUDINARY_RESTAURANT_URI } from "../../utils/constants";
 import "./SearchItem.scss";
 
-function SearchItem({text, metadata}) {
-   const cloudinaryId= JSON.parse(metadata).data.cloudinaryId;
+function SearchItem({ text, metadata }) {
+  const cloudinaryId = JSON.parse(metadata).data.cloudinaryId;
 
   return (
     <div className="search-item">
       <div>
         <img
-          src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/${cloudinaryId}`}
+          src={`${CLOUDINARY_RESTAURANT_URI}/${cloudinaryId}`}
           alt="restaurant"
         />
       </div>

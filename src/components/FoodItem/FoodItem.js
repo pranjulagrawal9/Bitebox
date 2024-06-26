@@ -5,6 +5,7 @@ import nonVegIcon from "../../assets/images/non-veg-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../store/slices/cartSlice";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { CLOUDINARY_RESTAURANT_URI } from "../../utils/constants";
 
 function FoodItem(props) {
   const { id, name, price, description, imageId, itemAttribute } =
@@ -35,7 +36,7 @@ function FoodItem(props) {
         <div className={imageId ? "food-image" : "food-image center-with-flex"}>
           {imageId && (
             <img
-              src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${imageId}`}
+              src={`${CLOUDINARY_RESTAURANT_URI}/${imageId}`}
               alt={name}
               loading="lazy"
             />

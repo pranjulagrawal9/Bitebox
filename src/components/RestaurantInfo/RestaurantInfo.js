@@ -20,7 +20,7 @@ function RestaurantInfo() {
     (store) => store.cart.isOtherRestaurant
   );
 
-  if (restaurantData.length !== 0)
+  if (restaurantData?.length !== 0)
     var {
       city,
       areaName,
@@ -48,7 +48,7 @@ function RestaurantInfo() {
         `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=27.8973944&lng=78.0880129&restaurantId=${restaurantId}&submitAction=ENTER`
     );
     const jsonData = await response.json();
-    setRestaurantData(jsonData.data.cards[0].card.card.info);
+    setRestaurantData(jsonData.data.cards[2].card.card.info);
     const itemIndex = jsonData.data.cards.length - 1;
 
     const foodCategories = jsonData.data.cards[
